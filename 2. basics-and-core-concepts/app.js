@@ -3,6 +3,7 @@ const app = Vue.createApp({
         return {
             courseGoalA: "Finish the course and learn Vue!",
             courseGoalB: "Master Vue and build amazing apps!",
+            courseGoalC: "<h2>Have fun</h2>",
             vueLink: "http://vuejs.org/"
         }
     },
