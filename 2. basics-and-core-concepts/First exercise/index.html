@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <section id="user-goal">
+      <h2>Your name: {{ name }}</h2>
+      <p>Your age: {{ age }}</p>
+      <p>Your age in 5 years: {{ calculateAge() }}</p>
+      <p>Favourite number: {{ generateFavouriteNumber() }}</p>
+      <div>
+        <img v-bind:src="imageUrl" />
+      </div>
+      <input type="text" v-bind:value="name" />
+    </section>
+  </body>
+</html>
