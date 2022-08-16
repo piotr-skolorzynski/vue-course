@@ -3,8 +3,17 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
-      confirmedName: ""
     };
+  },
+  // computed values are like methods but don't cause page render
+  computed: {
+    fullName() {
+      if (this.name === "") {
+        return "";
+      };
+
+      return this.name + " " + "Skolo";
+    }
   },
   methods: {
     add(num) {
@@ -16,15 +25,15 @@ const app = Vue.createApp({
     setName(event) {
       this.name = event.target.value;
     },
-    // when you have more parameters
-    // setName(event, secondParameter) {  
-    //    this.name = event.target.value + ' ' + secondParameter;
-    // }
-    confirmInput() {
-      this.confirmedName = this.name;
-    },
     resetInput() {
       this.name = "";
+    },
+    outputFullName() {
+      if (this.name === "") {
+        return "";
+      };
+
+      return this.name + " " + "Skolo";
     }
   }
 });
