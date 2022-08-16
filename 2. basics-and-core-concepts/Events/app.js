@@ -5,6 +5,14 @@ const app = Vue.createApp({
       name: "",
     };
   },
+  // watch observes value and make action if needed
+  watch: {
+    counter(value) {
+      if (value > 50) {
+        this.counter = 0;
+      }
+    }
+  },
   // computed values are like methods but don't cause page render
   computed: {
     fullName() {
