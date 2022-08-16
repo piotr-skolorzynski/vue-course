@@ -7,6 +7,7 @@ const app = Vue.createApp({
   },
   // watch observes value and make action if needed
   watch: {
+    // other good implementations: http requests, timers
     counter(value) {
       if (value > 50) {
         this.counter = 0;
