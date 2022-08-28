@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Lists and Conditional Content</h1>
+    </header>
+    <section id="assignment">
+      <h2>Assignments</h2>
+      <input type="text" v-model="enteredTaskValue" />
+      <button @click="addTask">Add Task</button>
+      <ul v-if="isDisplayed">
+        <li
+          v-for="(task, index) in tasks"
+          @click="removeTask(index)"
+          :key="task"
+        >
+          {{ task }}
+        </li>
+      </ul>
+      <button @click="toggleListView">{{ buttonCaption }}</button>
+    </section>
+  </body>
+</html>
