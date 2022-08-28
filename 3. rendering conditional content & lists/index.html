@@ -24,7 +24,11 @@
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="(goal, index) in goals" @click="removeGoal(index)">
+        <li
+          v-for="(goal, index) in goals"
+          @click="removeGoal(index)"
+          :key="goal"
+        >
           {{ goal }} - {{ index }}
         </li>
       </ul>
