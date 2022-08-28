@@ -3,13 +3,16 @@ const app = Vue.createApp({
     return {
       enteredGoalValue: '',
       goals: [],
-      object: { name: 'Piotr', age: 40 }
+      // object: { name: 'Piotr', age: 40 }
     };
   },
   methods: {
     addGoal() {
       this.goals.push(this.enteredGoalValue);
       this.enteredGoalValue = ''
+    },
+    removeGoal(index) {
+      this.goals.splice(index, 1)
     }
   }
 });
