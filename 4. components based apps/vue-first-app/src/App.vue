@@ -3,6 +3,8 @@
     <header>
       <h1>My friends</h1>
     </header>
+    <active-user :name="name" :age="age"></active-user>
+    <user-data @change-user="onChangeUser"></user-data>
     <new-friend @add-contact="onAddContact"></new-friend>
     <ul>
       <friend-contact
@@ -23,8 +25,10 @@
 <script>
 import FriendContact from './components/FriendContact.vue';
 import NewFriend from './components/NewFriend.vue';
+import ActiveUser from './components/ActiveUser.vue';
+import UserData from './components/UserData.vue';
 export default {
-  components: { FriendContact, NewFriend },
+  components: { FriendContact, NewFriend, ActiveUser, UserData },
   data() {
     return {
       friends: [
@@ -43,6 +47,8 @@ export default {
           isFavourite: false,
         },
       ],
+      name: 'skolo',
+      age: 40,
     };
   },
   methods: {
@@ -63,6 +69,11 @@ export default {
       if (id) {
         this.friends = this.friends.filter((friend) => friend.id !== id);
       }
+    },
+
+    onChangeUser(name, age) {
+      this.name = name;
+      this.age = age;
     },
   },
 };
@@ -102,7 +113,8 @@ header {
 }
 
 #app li,
-#app form {
+#app form,
+#app div.container {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
@@ -112,7 +124,9 @@ header {
   max-width: 40rem;
 }
 
-#app h2 {
+#app h2,
+#app div > h2,
+#app div > h3 {
   font-size: 2rem;
   border-bottom: 4px solid #ccc;
   color: #58004d;
