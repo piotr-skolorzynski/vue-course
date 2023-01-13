@@ -14,29 +14,29 @@
 
 <script>
 export default {
-  props: ['name', 'phoneNumber', 'emailAddress', 'isFavourite'],
-  // props: {
-  //   name: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   phoneNumber: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   emailAddress: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   isFavourite: {
-  //     type: String,
-  //     required: false,
-  //     default: '0', //can be a function
-  //     validator: function (value) {
-  //       return value === '1' || value === '0';
-  //     },
-  //   },
-  // },
+  // props: ['name', 'phoneNumber', 'emailAddress', 'isFavourite'],
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFavourite: {
+      type: String,
+      required: false,
+      default: '0', //can be a function
+      validator: function (value) {
+        return value === '1' || value === '0'; //returns boolean
+      },
+    },
+  },
   data() {
     return {
       detailsAreVisible: false,
