@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
-
 <template>
   <section>
     <header>
@@ -10,7 +8,14 @@
         name="Manuel Lorenz"
         phone-number="0123 45678 90"
         email-address="manuel@localhost.com"
-      />
+        is-favourite="1"
+      ></friend-contact>
+      <friend-contact
+        name="Julie Jones"
+        phone-number="0134 78678 90"
+        email-address="julie@localhost.com"
+        is-favourite="0"
+      ></friend-contact>
     </ul>
   </section>
 </template>
@@ -41,6 +46,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
 * {
   box-sizing: border-box;
 }
