@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavourite === '1' ? '(Favourite)' : '' }}</h2>
+    <h2>{{ name }} {{ friendIsFavourite ? '(Favourite)' : '' }}</h2>
     <button @click="toggleFavourite">Toggle Favourite</button>
     <button @click="toggleDetails">
       {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
@@ -29,12 +29,9 @@ export default {
       required: true,
     },
     isFavourite: {
-      type: String,
+      type: Boolean,
       required: false,
-      default: '0', //can be a function
-      validator: function (value) {
-        return value === '1' || value === '0'; //returns boolean
-      },
+      default: false,
     },
   },
   data() {
@@ -48,11 +45,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavourite() {
-      if (this.friendIsFavourite === '1') {
-        this.friendIsFavourite = '0';
-      } else {
-        this.friendIsFavourite = '1';
-      }
+      this.friendIsFavourite = !this.friendIsFavourite;
     },
   },
 };
