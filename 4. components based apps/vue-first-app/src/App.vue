@@ -14,6 +14,7 @@
         :email-address="friend.email"
         :is-favourite="friend.isFavourite"
         @toggle-favourite="toggleFavouriteStatus"
+        @delete-contact="onDeleteContact"
       ></friend-contact>
     </ul>
   </section>
@@ -56,6 +57,12 @@ export default {
         id: crypto.randomUUID(),
         isFavourite: false,
       });
+    },
+
+    onDeleteContact(id) {
+      if (id) {
+        this.friends = this.friends.filter((friend) => friend.id !== id);
+      }
     },
   },
 };

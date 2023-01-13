@@ -9,6 +9,7 @@
       <li><strong>Phone:</strong> {{ phoneNumber }}</li>
       <li><strong>Email:</strong> {{ emailAddress }}</li>
     </ul>
+    <button @click="onDeleteContact">Delete</button>
   </li>
 </template>
 
@@ -47,6 +48,13 @@ export default {
         return false;
       }
     },
+    'delete-contact': function (id) {
+      if (id) {
+        return true;
+      }
+
+      return false;
+    },
   },
   data() {
     return {
@@ -59,6 +67,9 @@ export default {
     },
     toggleFavourite() {
       this.$emit('toggle-favourite', this.id);
+    },
+    onDeleteContact() {
+      this.$emit('delete-contact', this.id);
     },
   },
 };
