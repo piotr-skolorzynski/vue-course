@@ -1,5 +1,8 @@
 <template>
   <div>
+    <header>
+      <slot name="header"></slot>
+    </header>
     <slot></slot>
   </div>
 </template>
@@ -9,6 +12,11 @@ export default {};
 </script>
 
 <style scoped>
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 div {
   margin: 2rem auto;
   max-width: 30rem;

@@ -16,17 +16,7 @@ import BadgeList from './components/BadgeList.vue';
 import UserInfo from './components/UserInfo.vue';
 
 export default {
-  components: {
-    'the-header': TheHeader,
-    'badge-list': BadgeList,
-    'user-info': UserInfo,
-  },
-  // components: {
-  //   TheHeader: TheHeader,
-  //   BadgeList: BadgeList,
-  //   UserInfo: UserInfo,
-  // },
-  // components: { TheHeader, BadgeList, UserInfo }, //nowoczesna składania dla tej samej nazwy klucz:wartość
+  components: { TheHeader, BadgeList, UserInfo },
   data() {
     return {
       activeUser: {
