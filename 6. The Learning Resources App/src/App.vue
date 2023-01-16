@@ -1,14 +1,15 @@
 <template>
-  <stored-resources :resources="storedResources" />
+  <TheHeader title="Remember Me" />
+  <StoredResources :resources="storedResources" />
 </template>
 
 <script>
 import StoredResources from './components/learning-resources/StoredResources.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
 
 export default {
   data() {
     return {
-      components: { StoredResources },
       storedResources: [
         {
           id: crypto.randomUUID(),
@@ -25,6 +26,7 @@ export default {
       ],
     };
   },
+  components: { StoredResources, TheHeader },
 };
 </script>
 
