@@ -1,22 +1,14 @@
 <template>
-  <ul>
-    <learning-resources
-      v-for="resource in storedResources"
-      :key="resource.id"
-      :title="resource.title"
-      :description="resource.description"
-      :link="resource.link"
-    ></learning-resources>
-  </ul>
+  <stored-resources :resources="storedResources" />
 </template>
 
 <script>
-import LearningResource from './components/learning-resources/LearningResource.vue';
+import StoredResources from './components/learning-resources/StoredResources.vue';
 
 export default {
   data() {
     return {
-      components: { LearningResource },
+      components: { StoredResources },
       storedResources: [
         {
           id: crypto.randomUUID(),
@@ -35,3 +27,19 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
