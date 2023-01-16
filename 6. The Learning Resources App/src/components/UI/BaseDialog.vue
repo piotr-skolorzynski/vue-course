@@ -1,24 +1,28 @@
 <template>
-  <div @click="$emit('close')">
-    <dialog open>
-      <header>
-        <slot name="header">
-          <h2>{{ title }}</h2>
-        </slot>
-      </header>
-      <section>
-        <slot></slot>
-      </section>
-      <menu>
-        <slot name="actions">
-          <BaseButton @click="$emit('close')">Close</BaseButton>
-        </slot>
-      </menu>
-    </dialog>
-  </div>
+  <Teleport to="body">
+    <div @click="$emit('close')">
+      <dialog open>
+        <header>
+          <slot name="header">
+            <h2>{{ title }}</h2>
+          </slot>
+        </header>
+        <section>
+          <slot></slot>
+        </section>
+        <menu>
+          <slot name="actions">
+            <BaseButton @click="$emit('close')">Close</BaseButton>
+          </slot>
+        </menu>
+      </dialog>
+    </div>
+  </Teleport>
 </template>
 
 <script>
+import { Teleport } from 'vue';
+
 export default {
   props: {
     title: {
@@ -28,6 +32,7 @@ export default {
     },
   },
   emits: ['close'],
+  components: { Teleport },
 };
 </script>
 
