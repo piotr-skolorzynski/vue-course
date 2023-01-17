@@ -93,6 +93,9 @@
       </div>
     </div>
     <div class="form-control">
+      <RatingControl />
+    </div>
+    <div class="form-control">
       <input
         type="checkbox"
         id="confirm-terms"
@@ -108,6 +111,7 @@
 </template>
 
 <script>
+import RatingControl from './RatingControl.vue';
 export default {
   data() {
     return {
@@ -120,6 +124,7 @@ export default {
       userNameValidity: 'pending',
     };
   },
+  components: { RatingControl },
   methods: {
     submitForm() {
       this.userName = '';
