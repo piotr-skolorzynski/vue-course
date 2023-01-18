@@ -8,7 +8,7 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
-      <ul v-else>
+      <ul v-else-if="!isLoading && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -16,6 +16,9 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
+      <p v-else>
+        No stored Experiences found. Start adding some survey results first.
+      </p>
     </base-card>
   </section>
 </template>
