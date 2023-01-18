@@ -8,7 +8,11 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
-      <ul v-else-if="!isLoading && results.length > 0">
+      <p v-else-if="!isLoading && errorMessage">{{ errorMessage }}</p>
+      <p v-else-if="!isLoading && (!results || !results.length)">
+        No stored Experiences found. Start adding some survey results first.
+      </p>
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -16,9 +20,6 @@
           :rating="result.rating"
         ></survey-result>
       </ul>
-      <p v-else>
-        No stored Experiences found. Start adding some survey results first.
-      </p>
     </base-card>
   </section>
 </template>
@@ -34,6 +35,7 @@ export default {
     return {
       results: [],
       isLoading: false,
+      errorMessage: null,
     };
   },
   methods: {
@@ -58,6 +60,11 @@ export default {
 
           this.isLoading = false;
           this.results = results;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.isLoading = false;
+          this.errorMessage = 'Failed to fetch data - please try again later.';
         });
     },
   },
