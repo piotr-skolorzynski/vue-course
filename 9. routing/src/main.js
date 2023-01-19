@@ -5,6 +5,7 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
+import NotFound from './components/nav/NotFound.vue';
 
 const router = createRouter({
     // tells how to manage the routing history, there are two types createWebHistory means 
@@ -12,9 +13,11 @@ const router = createRouter({
     history: createWebHistory(),
     //registry of routes to be used
     routes: [
+        { path: '/', redirect: '/teams' },
         { path: '/teams', component: TeamsList },
         { path: '/users', component: UsersList },
-        { path: '/teams/:teamId', component: TeamMembers, props: true }
+        { path: '/teams/:teamId', component: TeamMembers, props: true },
+        { path: '/:not-found(.*)', name: 'NotFound', component: NotFound }
     ],
     linkActiveClass: 'active'
 });
