@@ -9,6 +9,7 @@
         :role="member.role"
       ></user-item>
     </ul>
+    <router-link to="/teams/t2">Go to Team 2</router-link>
   </section>
 </template>
 
@@ -26,19 +27,29 @@ export default {
     };
   },
   inject: ['users', 'teams'],
+  methods: {
+    loadTeamMembers(route) {
+      const teamId = route.params.teamId; //teamId - name of dynamic param set in router paths '/teams/:teamId'
+      const selectedTeam = this.teams.find((team) => team.id === teamId);
+      const members = selectedTeam.members;
+      const selectedMembers = [];
+      for (const member of members) {
+        const selectedUsers = this.users.find((user) => user.id === member);
+        selectedMembers.push(selectedUsers);
+      }
+
+      this.members = selectedMembers;
+      this.teamName = selectedTeam.name;
+    },
+  },
   //life cycle of component, moment when we have access to params
   created() {
-    const teamId = this.$route.params.teamId; //teamId - name of dynamic param set in router paths '/teams/:teamId'
-    const selectedTeam = this.teams.find((team) => team.id === teamId);
-    const members = selectedTeam.members;
-    const selectedMembers = [];
-    for (const member of members) {
-      const selectedUsers = this.users.find((user) => user.id === member);
-      selectedMembers.push(selectedUsers);
-    }
-
-    this.members = selectedMembers;
-    this.teamName = selectedTeam.name;
+    this.loadTeamMembers(this.$route);
+  },
+  watch: {
+    $route(newRoute) {
+      this.loadTeamMembers(newRoute);
+    },
   },
 };
 </script>
