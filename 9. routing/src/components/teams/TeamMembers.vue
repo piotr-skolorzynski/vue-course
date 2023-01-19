@@ -20,6 +20,7 @@ export default {
   components: {
     UserItem,
   },
+  props: ['teamId'],
   data() {
     return {
       teamName: '',
@@ -28,8 +29,7 @@ export default {
   },
   inject: ['users', 'teams'],
   methods: {
-    loadTeamMembers(route) {
-      const teamId = route.params.teamId; //teamId - name of dynamic param set in router paths '/teams/:teamId'
+    loadTeamMembers(teamId) {
       const selectedTeam = this.teams.find((team) => team.id === teamId);
       const members = selectedTeam.members;
       const selectedMembers = [];
@@ -44,11 +44,11 @@ export default {
   },
   //life cycle of component, moment when we have access to params
   created() {
-    this.loadTeamMembers(this.$route);
+    this.loadTeamMembers(this.teamId);
   },
   watch: {
-    $route(newRoute) {
-      this.loadTeamMembers(newRoute);
+    teamId(newId) {
+      this.loadTeamMembers(newId);
     },
   },
 };
