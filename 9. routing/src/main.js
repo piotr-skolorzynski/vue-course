@@ -15,9 +15,9 @@ const router = createRouter({
     routes: [
         { path: '/', redirect: '/teams' },
         {
-            path: '/teams', component: TeamsList, children:
+            path: '/teams', name: 'teams', component: TeamsList, children:
                 [
-                    { path: ':teamId', component: TeamMembers, props: true }, //teams/t1
+                    { path: ':teamId', name: 'team-members', component: TeamMembers, props: true }, //teams/t1
                 ]
         },
         { path: '/users', component: UsersList },
