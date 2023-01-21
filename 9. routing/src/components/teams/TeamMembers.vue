@@ -45,6 +45,7 @@ export default {
   //life cycle of component, moment when we have access to params
   created() {
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query);
   },
   watch: {
     teamId(newId) {

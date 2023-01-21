@@ -11,20 +11,12 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
     teamsMemberLink() {
-      // return `/teams/${this.id}`;
+      //retrun '/teams' + this.id + '?sort=asc';
       return {
         name: 'team-members',
-        params: {
-          teamId: this.id,
-        },
+        params: { teamId: this.id },
+        query: { sort: 'asc' },
       };
-      //this.$router.push({
-      //   name: 'team-members',
-      //   params: {
-      //     teamId: this.id,
-      //   },
-
-      // };)
     },
   },
 };
