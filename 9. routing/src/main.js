@@ -22,10 +22,38 @@ const router = createRouter({
                     { path: ':teamId', name: 'team-members', component: TeamMembers, props: true },
                 ]
         },
-        { path: '/users', components: { default: UsersList, footer: UsersFooter } },
+        {
+            path: '/users',
+            components: { default: UsersList, footer: UsersFooter },
+            beforeEnter(to, from, next) {
+                console.log('users beforeEnter');
+                console.log(to, from);
+                next();
+            }
+        },
         { path: '/:not-found(.*)', component: NotFound }
     ],
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    scrollBehavior(_, _2, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        }
+
+        return { left: 0, top: 0 }
+    }
+});
+
+router.beforeEach((to, from, next) => {
+    console.log('Global beforeEach')
+    console.log(to, from);
+    next(); //let navigation action continue
+    // next(false); //forbid to proceed navigation
+    // next('/users'); //navigate to users
+    // if (to.name === 'team-members') {
+    //     next();
+    // } else {
+    //     next({ name: 'team-members', params: { teamId: 't2' } }); //it will cause that you always are directed to /teams/t2. It is an example cause it does not have any sense to use.
+    // }
 });
 
 const app = createApp(App);
