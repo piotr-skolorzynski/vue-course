@@ -10,17 +10,15 @@ import TeamsFooter from './components/teams/TeamsFooter.vue';
 import UsersFooter from './components/users/UsersFooter.vue';
 
 const router = createRouter({
-    // tells how to manage the routing history, there are two types createWebHistory means 
-    // that router should use build in browser mechanism of history
     history: createWebHistory(),
-    //registry of routes to be used
     routes: [
         { path: '/', redirect: '/teams' },
         {
-            path: '/teams', name: 'teams', components: { default: TeamsList, footer: TeamsFooter }, children:
-                [
-                    { path: ':teamId', name: 'team-members', component: TeamMembers, props: true },
-                ]
+            path: '/teams',
+            name: 'teams',
+            meta: { needsAuth: true },
+            components: { default: TeamsList, footer: TeamsFooter },
+            children: [{ path: ':teamId', name: 'team-members', component: TeamMembers, props: true },]
         },
         {
             path: '/users',
@@ -46,14 +44,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     console.log('Global beforeEach')
     console.log(to, from);
-    next(); //let navigation action continue
-    // next(false); //forbid to proceed navigation
-    // next('/users'); //navigate to users
-    // if (to.name === 'team-members') {
-    //     next();
-    // } else {
-    //     next({ name: 'team-members', params: { teamId: 't2' } }); //it will cause that you always are directed to /teams/t2. It is an example cause it does not have any sense to use.
-    // }
+    //with such meta it is possible to check globally for particular components if user is authenticated
+    if (to.meta.needsAuth) {
+        console.log('needs auth');
+        next();
+    }
+
+    next();
 });
 
 router.afterEach((to, from) => {
