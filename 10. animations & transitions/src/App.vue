@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <transition>
+    <transition name="para">
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
     <buton @click="toggleParagraph">Toggle Paragraph</buton>
@@ -78,24 +78,24 @@ button:active {
   border-radius: 12px;
 }
 
-.v-enter-from {
+.para-enter-from {
 }
 
-.v-enter-active {
+.para-enter-active {
   animation: slide-scale 0.3s ease-out;
 }
 
-.v-enter-to {
+.para-enter-to {
 }
 
-.v-leave-from {
+.para-leave-from {
 }
 
-.v-leave-active {
+.para-leave-active {
   animation: slide-scale 0.3s ease-out;
 }
 
-.v-leave-to {
+.para-leave-to {
 }
 
 @keyframes slide-scale {
