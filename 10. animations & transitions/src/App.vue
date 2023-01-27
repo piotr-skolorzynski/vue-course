@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <UsersList />
+  </div>
+
+  <div class="container">
     <transition
       :css="false"
       @before-enter="beforeEnter"
@@ -33,7 +37,10 @@
 </template>
 
 <script>
+import UsersList from './components/UsersList.vue';
+
 export default {
+  components: { UsersList },
   data() {
     return {
       dialogIsVisible: false,
