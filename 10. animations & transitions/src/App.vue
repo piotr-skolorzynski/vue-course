@@ -1,46 +1,13 @@
 <template>
-  <div class="container">
-    <UsersList />
-  </div>
-
-  <div class="container">
-    <transition
-      :css="false"
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @before-leave="beforeLeave"
-      @leave="leave"
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancelled"
-      @leave-cancelled="leaveCancelled"
-    >
-      <p v-if="paraIsVisible">This is only sometimes visible...</p>
+  <router-view v-slot="slotProps" mode="out-in">
+    <transition name="route">
+      <component :is="slotProps.Component"></component>
     </transition>
-    <buton @click="toggleParagraph">Toggle Paragraph</buton>
-  </div>
-  <transition name="modal">
-    <base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal>
-  </transition>
-  <div class="container">
-    <transition name="fade-button" mode="out-in">
-      <button @click="showUser" v-if="!usersAreVisible">Show Users</button>
-      <button @click="hideUser" v-else="usersAreVisible">Hide Users</button>
-    </transition>
-  </div>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  </router-view>
 </template>
 
 <script>
-import UsersList from './components/UsersList.vue';
-
 export default {
-  components: { UsersList },
   data() {
     return {
       dialogIsVisible: false,
@@ -125,6 +92,36 @@ export default {
 </script>
 
 <style>
+.route-enter-from {
+}
+.route-enter-active {
+  animation: slide-scale 0.4s ease-out;
+}
+.route-enter-to {
+}
+
+.route-enter-from {
+}
+.route-enter-active {
+  animation: slide-scale 0.4s ease-in;
+}
+.route-enter-to {
+}
+
+@keyframes slide-scale {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+
+  70% {
+    transform: translateX(-120px) scale(1.1);
+  }
+
+  100% {
+    transform: translateX(-150px) scale(1);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -164,20 +161,6 @@ button:active {
   padding: 2rem;
   border: 2px solid #ccc;
   border-radius: 12px;
-}
-
-@keyframes slide-scale {
-  0% {
-    transform: translateX(0) scale(1);
-  }
-
-  70% {
-    transform: translateX(-120px) scale(1.1);
-  }
-
-  100% {
-    transform: translateX(-150px) scale(1);
-  }
 }
 
 .fade-button-enter-from,
