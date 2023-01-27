@@ -1,6 +1,14 @@
 <template>
   <div class="container">
-    <transition name="para">
+    <transition
+      name="para"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
     <buton @click="toggleParagraph">Toggle Paragraph</buton>
@@ -28,14 +36,38 @@ export default {
     return {
       dialogIsVisible: false,
       paraIsVisible: false,
-      usersAreVisible: false;
+      usersAreVisible: false,
     };
   },
   methods: {
+    beforeEnter(el) {
+      console.log('before enter');
+      console.log(el);
+    },
+    enter(el) {
+      console.log('enter');
+      console.log(el);
+    },
+    afterEnter(el) {
+      console.log('after enter');
+      console.log(el);
+    },
+    beforeLeave(el) {
+      console.log('before leave');
+      console.log(el);
+    },
+    leave() {
+      console.log('leave');
+      console.log(el);
+    },
+    afterLeave(el) {
+      console.log('after leave');
+      console.log(el);
+    },
     showUsers() {
       this.usersAreVisible = true;
     },
-    hideUsers () {
+    hideUsers() {
       this.usersAreVisible = false;
     },
     toggleParagraph() {
