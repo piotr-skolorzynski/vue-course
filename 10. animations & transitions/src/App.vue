@@ -8,6 +8,8 @@
       @before-leave="beforeLeave"
       @leave="leave"
       @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
@@ -37,16 +39,37 @@ export default {
       dialogIsVisible: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
+    enterCancelled(el) {
+      console.log(el);
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled(el) {
+      console.log(el);
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
       console.log('before enter');
       console.log(el);
+      el.style.opacity = 0;
     },
-    enter(el) {
+    enter(el, done) {
       console.log('enter');
       console.log(el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round += 1;
+
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
     },
     afterEnter(el) {
       console.log('after enter');
@@ -55,10 +78,21 @@ export default {
     beforeLeave(el) {
       console.log('before leave');
       console.log(el);
+      el.style.opacity = 1;
     },
-    leave() {
+    leave(el, done) {
       console.log('leave');
       console.log(el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round += 1;
+
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log('after leave');
@@ -123,26 +157,6 @@ button:active {
   padding: 2rem;
   border: 2px solid #ccc;
   border-radius: 12px;
-}
-
-.para-enter-from {
-}
-
-.para-enter-active {
-  animation: slide-scale 0.3s ease-out;
-}
-
-.para-enter-to {
-}
-
-.para-leave-from {
-}
-
-.para-leave-active {
-  animation: slide-scale 0.3s ease-out;
-}
-
-.para-leave-to {
 }
 
 @keyframes slide-scale {
