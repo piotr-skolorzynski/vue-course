@@ -27,9 +27,7 @@ export default {
   },
   methods: {
     addTen() {
-      // this.$store.dispatch('increase', { value: 10 });
-      //alternative
-      this.$store.dispatch({
+      this.$store.dispatch('numbers', {
         type: 'increase',
         value: 10,
       });
@@ -37,7 +35,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return this.$store.getters.isUserAuth;
+      return this.$store.getters['auth/isUserAuth'];
     },
   },
 };
