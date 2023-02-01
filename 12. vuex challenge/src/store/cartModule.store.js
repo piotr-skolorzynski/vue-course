@@ -8,14 +8,14 @@ const cartModule = {
     mutations: {
         addProductToCart(state, payload) {
             const productInCartIndex = state.cart.items.findIndex(
-                (ci) => ci.productId === payload.id
+                (ci) => ci.productId === payload.productId
             );
 
             if (productInCartIndex >= 0) {
                 state.cart.items[productInCartIndex].qty += 1;
             } else {
                 const newItem = {
-                    productId: payload.id,
+                    productId: payload.productId,
                     title: payload.title,
                     image: payload.image,
                     price: payload.price,
@@ -29,6 +29,7 @@ const cartModule = {
             state.cart.total += payload.price;
         },
         removeProductFromCart(state, payload) {
+            console.log(payload.prodId)
             const productInCartIndex = state.cart.items.findIndex(
                 (cartItem) => cartItem.productId === payload.prodId
             );
@@ -54,7 +55,7 @@ const cartModule = {
             return state.cart.total.toFixed(2);
         },
         cartItems(state) {
-            return state.cart.cartItems;
+            return state.cart.items;
         }
     }
 };
