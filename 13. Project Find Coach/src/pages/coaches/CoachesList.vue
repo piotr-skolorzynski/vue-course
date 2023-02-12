@@ -31,7 +31,7 @@ import CoachItem from '../../components/coaches/CoachItem.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
 export default {
-  components: { CoachItem, CoachFilter, BaseCard, BaseButton },
+  components: { CoachItem, CoachFilter },
   data() {
     return {
       activeFilters: {

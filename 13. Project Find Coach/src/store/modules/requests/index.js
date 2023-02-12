@@ -9,7 +9,7 @@ export default {
             requests: []
         };
     },
-    mutations: mutations,
-    actions: actions,
-    getters: getters
+    mutations,
+    actions,
+    getters
 }
