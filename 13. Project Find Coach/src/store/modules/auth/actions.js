@@ -16,7 +16,7 @@ export default {
 
         if (!response.ok) {
             console.log(responseData);
-            const error = new Error(responseData.message) || 'Failed to authenticat';
+            const error = new Error(responseData.message) || 'Failed to authenticate. Check your login data.';
             throw error;
         }
 
@@ -24,6 +24,6 @@ export default {
             token: responseData.idToken,
             userId: responseData.localId,
             tokenExpiration: responseData.expiresIn
-        })
+        });
     }
 };
