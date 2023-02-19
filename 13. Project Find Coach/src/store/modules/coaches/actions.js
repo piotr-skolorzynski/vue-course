@@ -10,7 +10,9 @@ export default {
             areas: payload.areas
         };
 
-        const response = await fetch(`https://vue-course-http-requests-d7100-default-rtdb.europe-west1.firebasedatabase.app/${userId}.json`, {
+        const token = context.rootGetters.token;
+
+        const response = await fetch(`https://vue-course-http-requests-d7100-default-rtdb.europe-west1.firebasedatabase.app/${userId}.json?auth=${token}`, {
             method: 'PUT',
             body: JSON.stringify(coachData)
         });
