@@ -5,13 +5,13 @@
 </template>
 
 <script setup>
-import { defineProps, computed, defineEmits } from 'vue';
+import { defineProps, computed, inject } from 'vue';
 
-const props = defineProps(['firstName', 'lastName', 'age']);
+const props = defineProps(['firstName', 'lastName']);
+
+const age = inject('userAge');
 
 const userName = computed(() => {
   return props.firstName + ' ' + props.lastName;
 });
-
-const saveData = defineEmits([('save', { userName, age })]);
 </script>
