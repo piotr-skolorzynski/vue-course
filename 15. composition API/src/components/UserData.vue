@@ -5,7 +5,17 @@
 </template>
 
 <script setup>
-import { defineProps, computed, inject } from 'vue';
+import {
+  defineProps,
+  computed,
+  inject,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+} from 'vue';
 
 const props = defineProps(['firstName', 'lastName']);
 
@@ -13,5 +23,29 @@ const age = inject('userAge');
 
 const userName = computed(() => {
   return props.firstName + ' ' + props.lastName;
+});
+
+onBeforeMount(() => {
+  console.log('onBeforeMount');
+});
+
+onMounted(() => {
+  console.log('onMounted');
+});
+
+onBeforeUpdate(() => {
+  console.log('onBeforeUpdate');
+});
+
+onUpdated(() => {
+  console.log('onUpted');
+});
+
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount');
+});
+
+onUnmounted(() => {
+  console.log('onUnmounted');
 });
 </script>
