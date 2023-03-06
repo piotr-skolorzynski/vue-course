@@ -6,7 +6,7 @@ import App from './App.vue';
 
 const app = createApp(App);
 
-app.component('base-search', BaseSearch);
-app.component('base-container', BaseContainer);
+app.component('BaseSearch', BaseSearch);
+app.component('BaseContainer', BaseContainer);
 
 app.mount('#app');
