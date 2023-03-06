@@ -16,17 +16,22 @@
         :key="user.id"
         :id="user.id"
         :user-name="user.fullName"
-        @list-projects="$emit('list-projects', $event)"
+        @list-projects="listProjects"
       />
     </ul>
   </base-container>
 </template>
 
 <script setup>
-import { defineProps, ref, computed, watch } from 'vue';
+import { defineProps, ref, computed, watch, defineEmits } from 'vue';
 import UserItem from './UserItem.vue';
 
 const props = defineProps(['users']);
+const emits = defineEmits(['listProjects']);
+
+const listProjects = (event) => {
+  emits('listProjects', event);
+};
 
 const enteredSearchTerm = ref('');
 const activeSearchTerm = ref('');
