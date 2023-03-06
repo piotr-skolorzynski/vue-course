@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed, watch } from 'vue';
+import { ref, defineProps, computed, watch, toRefs } from 'vue';
 import ProjectItem from './ProjectItem.vue';
 
 const props = defineProps(['user']);
@@ -54,7 +54,9 @@ watch(enteredSearchTerm, (val) => {
   }, 300);
 });
 
-watch(props.user, () => {
+const { user } = toRefs(props);
+
+watch(user, () => {
   enteredSearchTerm.value = '';
 });
 </script>
